@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,15 @@
             <label for="descricao">Descrição:</label>
             <textarea name="descricao" id="descricao" rows="10" cols="20"></textarea>
         </div>
+        
+        <c:forEach items="${tipos}" var="t" varStatus="status">
+            <div>
+                <label for="precos[${status.index}].valor">${t}</label>
+                <input type="text" name="precos[${status.index}].valor" id="precos[${status.index}].valor">
+                <input type="hidden" name="precos[${status.index}].tipo" id="precos[${status.index}].tipo" value="${t}">
+            </div>
+        </c:forEach>
+        
         <div>
             <button type="submit">Gravar</button>
         </div>
