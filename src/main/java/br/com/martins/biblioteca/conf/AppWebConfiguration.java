@@ -6,9 +6,10 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.martins.biblioteca.controller.HomeController;
+import br.com.martins.biblioteca.repository.ProdutoRepository;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class})
+@ComponentScan(basePackageClasses={HomeController.class, ProdutoRepository.class})
 public class AppWebConfiguration {
     
     @Bean
