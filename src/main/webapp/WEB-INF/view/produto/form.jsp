@@ -11,7 +11,7 @@
     
     <h1>Produto</h1>
 
-    <form method="POST" action="/biblioteca/produto/gravar">
+    <form method="POST" action="/biblioteca/produto">
         <div>
             <label for="titulo">Título:</label>
             <input type="text" name="titulo" id="titulo">

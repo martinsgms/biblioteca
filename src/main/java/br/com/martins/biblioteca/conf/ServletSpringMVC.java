@@ -18,4 +18,12 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
     protected String[] getServletMappings() {
         return new String[] {"/"};
     }
+    
+//    @Override
+//    protected Filter[] getServletFilters() {
+//        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+//        encodingFilter.setEncoding("UTF-8");
+//        
+//        return new Filter[] {encodingFilter};
+//    }
 }
