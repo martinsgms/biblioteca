@@ -42,7 +42,7 @@ public class ProdutoController {
             RedirectAttributes redirectAttributes) {
         
         if (bindingResult.hasErrors()) 
-            return form();
+            return form(produto);
             
         repository.gravar(produto);
         redirectAttributes.addFlashAttribute("message", "Produto cadastrado com sucesso!");
@@ -51,7 +51,7 @@ public class ProdutoController {
     }
 
     @RequestMapping(value = "/form")
-    public ModelAndView form() {
+    public ModelAndView form(Produto produto) {
         ModelAndView modelAndView = new ModelAndView("produto/form");
         modelAndView.addObject("tipos", TipoPreco.values());
 

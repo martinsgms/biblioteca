@@ -19,30 +19,35 @@
 
     <form:form commandName="produto" method="POST" action="${s:mvcUrl('PC#gravar').build()}">
         <div>
-            <label for="titulo">Título:</label>
-            <input type="text" name="titulo" id="titulo">
+            <form:label path="titulo">Título:</form:label>
+            <form:input path="titulo" />
             <form:errors path="titulo"/>
         </div>
         <div>
-            <label for="autor">Autor:</label>
-            <input type="text" name="autor" id="autor">
+            <form:label path="autor">Autor:</form:label>
+            <form:input path="autor"/>
             <form:errors path="autor"/>
         </div>
         <div>
-            <label for="paginas">Páginas:</label>
-            <input type="text" name="paginas" id="paginas">
+            <form:label path="paginas">Páginas:</form:label>
+            <form:input path="paginas"/>
             <form:errors path="paginas"/>
         </div>
         <div>
-            <label for="descricao">Descrição:</label>
-            <textarea name="descricao" id="descricao" rows="10" cols="20"></textarea>
+            <form:label path="dataLancamento">Data de Lançamento:</form:label>
+            <form:input path="dataLancamento"/>
+            <form:errors path="dataLancamento"/>
+        </div>
+        <div>
+            <form:label path="descricao">Descrição:</form:label>
+            <form:textarea path="descricao" rows="10" cols="20"/>
         </div>
         
         <c:forEach items="${tipos}" var="t" varStatus="status">
             <div>
-                <label for="precos[${status.index}].valor">${t}</label>
-                <input type="text" name="precos[${status.index}].valor" id="precos[${status.index}].valor">
-                <input type="hidden" name="precos[${status.index}].tipo" id="precos[${status.index}].tipo" value="${t}">
+                <form:label path="precos[${status.index}].valor">${t}</form:label>
+                <form:input path="precos[${status.index}].valor" />
+                <form:hidden path="precos[${status.index}].tipo" value="${t}"/>
             </div>
         </c:forEach>
         
