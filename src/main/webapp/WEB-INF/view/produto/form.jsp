@@ -8,6 +8,10 @@
 <head>
     <meta charset='utf-8'>
     <title>Biblioteca :: Cadastro Produto</title>
+<style>
+    *{font-family: verdana}
+    div{margin: 10px}
+</style>
 </head>
 <body>
     

@@ -9,30 +9,38 @@
 </head>
 
 <style>
-    table, tr, td{border: 1px solid; padding: 5px;}
+    *{font-family: verdana}
+    table{width:100%}
+    table, tr, td{border: 0.3px solid; padding: 5px;}
+    thead{font-weight: bold}
 </style>
 <body>
     
     <h1>Lista de Produtos</h1>
     <a href="produto/form">Adicionar novo</a>
     <p>${message}</p>
+    
     <table>
+    <thead>
         <tr>
             <td>Titulo</td>
             <td>Autor</td>
             <td>Páginas</td>
             <td>Descrição</td>
         </tr>
+    </thead>
+    <tbody>
         <tr> 
-            <c:forEach items="${produtos}" var="p">
-                <tr>
-                    <td>${p.titulo}</td>
-                    <td>${p.autor}</td>
-                    <td>${p.paginas}</td>
-                    <td>${p.descricao}</td>
-                </tr>
-            </c:forEach>
+        <c:forEach items="${produtos}" var="p">
+        <tr>
+            <td>${p.titulo}</td>
+            <td>${p.autor}</td>
+            <td>${p.paginas}</td>
+            <td>${p.descricao}</td>
         </tr>
+        </c:forEach>
+        </tr>
+    </tbody>
     </table>
 
 </body>
