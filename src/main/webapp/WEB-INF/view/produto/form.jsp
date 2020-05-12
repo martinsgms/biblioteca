@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 
 <!DOCTYPE html>
 <html>
@@ -11,18 +13,21 @@
     
     <h1>Produto</h1>
 
-    <form method="POST" action="/biblioteca/produto">
+    <form:form commandName="produto" method="POST" action="${s:mvcUrl('PC#gravar').build()}">
         <div>
             <label for="titulo">Título:</label>
             <input type="text" name="titulo" id="titulo">
+            <form:errors path="titulo"/>
         </div>
         <div>
             <label for="autor">Autor:</label>
             <input type="text" name="autor" id="autor">
+            <form:errors path="autor"/>
         </div>
         <div>
             <label for="paginas">Páginas:</label>
-            <input type="number" name="paginas" id="paginas">
+            <input type="text" name="paginas" id="paginas">
+            <form:errors path="paginas"/>
         </div>
         <div>
             <label for="descricao">Descrição:</label>
@@ -40,6 +45,6 @@
         <div>
             <button type="submit">Gravar</button>
         </div>
-    </form>    
+    </form:form>    
 </body>
 </html>
