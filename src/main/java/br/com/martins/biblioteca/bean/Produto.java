@@ -17,18 +17,19 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+
     @ElementCollection
     private List<Preco> precos;
-    
+
     @DateTimeFormat
     private Calendar dataLancamento;
-    
+
+    private String sumarioPath;
     private String titulo;
     private String autor;
     private String descricao;
     private Integer paginas;
-    
+
     public Integer getId() {
         return id;
     }
@@ -68,7 +69,7 @@ public class Produto {
     public void setPaginas(Integer paginas) {
         this.paginas = paginas;
     }
-    
+
     public List<Preco> getPrecos() {
         return precos;
     }
@@ -76,13 +77,21 @@ public class Produto {
     public void setPrecos(List<Preco> precos) {
         this.precos = precos;
     }
-    
+
     public Calendar getDataLancamento() {
         return dataLancamento;
     }
 
     public void setDataLancamento(Calendar dataLancamento) {
         this.dataLancamento = dataLancamento;
+    }
+
+    public String getSumarioPath() {
+        return sumarioPath;
+    }
+
+    public void setSumarioPath(String sumarioPath) {
+        this.sumarioPath = sumarioPath;
     }
 
     @Override

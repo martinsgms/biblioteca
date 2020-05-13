@@ -17,7 +17,7 @@
     
     <h1>Produto</h1>
 
-    <form:form commandName="produto" method="POST" action="${s:mvcUrl('PC#gravar').build()}">
+    <form:form commandName="produto" method="POST" action="${s:mvcUrl('PC#gravar').build()}" enctype="multipart/form-data">
         <div>
             <form:label path="titulo">Título:</form:label>
             <form:input path="titulo" />
@@ -37,6 +37,10 @@
             <form:label path="dataLancamento">Data de Lançamento:</form:label>
             <form:input path="dataLancamento"/>
             <form:errors path="dataLancamento"/>
+        </div>
+        <div>
+            <label for="sumarioPath">Sumário:</label>
+            <input type="file" name="sumario" id="sumario"/>
         </div>
         <div>
             <form:label path="descricao">Descrição:</form:label>
