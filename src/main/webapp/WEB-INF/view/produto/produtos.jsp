@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +18,7 @@
 <body>
     
     <h1>Lista de Produtos</h1>
-    <a href="produto/form">Adicionar novo</a>
+    <a href="${s:mvcUrl('PC#form').build()}">Adicionar novo</a>
     <p>${message}</p>
     
     <table>
@@ -32,12 +33,16 @@
     <tbody>
         <tr> 
         <c:forEach items="${produtos}" var="p">
+       
         <tr>
-            <td>${p.titulo}</td>
+            <td>
+                <a href="${s:mvcUrl('PC#detalhe').arg(0, p.id).build()}">${p.titulo}</a>
+            </td>
             <td>${p.autor}</td>
             <td>${p.paginas}</td>
             <td>${p.descricao}</td>
         </tr>
+        
         </c:forEach>
         </tr>
     </tbody>

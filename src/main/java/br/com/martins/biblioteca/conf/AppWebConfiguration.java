@@ -13,12 +13,13 @@ import org.springframework.web.multipart.support.StandardServletMultipartResolve
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import br.com.martins.biblioteca.bean.CarrinhoCompras;
 import br.com.martins.biblioteca.controller.HomeController;
 import br.com.martins.biblioteca.infra.FileSaver;
 import br.com.martins.biblioteca.repository.ProdutoRepository;
 
 @EnableWebMvc
-@ComponentScan(basePackageClasses={HomeController.class, ProdutoRepository.class, FileSaver.class})
+@ComponentScan(basePackageClasses={HomeController.class, ProdutoRepository.class, FileSaver.class, CarrinhoCompras.class})
 public class AppWebConfiguration {
     
     @Bean
@@ -27,6 +28,8 @@ public class AppWebConfiguration {
         
         resolver.setPrefix("/WEB-INF/view/");
         resolver.setSuffix(".jsp");
+        
+        resolver.setExposedContextBeanNames("carrinhoCompras");
         
         return resolver;
     }

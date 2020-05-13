@@ -26,5 +26,11 @@ public class ProdutoRepository {
         TypedQuery<Produto> q = em.createQuery("select p from Produto p", Produto.class);
         return q.getResultList();
     }
+
+    public Produto find(Integer id) {
+        return em.createQuery("select distinct(p) from Produto p join fetch p.precos where p.id = :id", Produto.class)
+            .setParameter("id", id)
+            .getSingleResult();
+    }
     
 }
