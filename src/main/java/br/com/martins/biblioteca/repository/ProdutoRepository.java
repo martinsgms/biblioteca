@@ -32,5 +32,9 @@ public class ProdutoRepository {
             .setParameter("id", id)
             .getSingleResult();
     }
+
+    public void remove(Integer idProduto) {
+        em.remove(idProduto);
+    }
     
 }

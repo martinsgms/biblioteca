@@ -17,6 +17,11 @@
 </style>
 <body>
     
+    <header>
+        <a href="${s:mvcUrl('PC#listAll').build()}">Produtos</a> |
+        <a href="${s:mvcUrl('CCC#itens').build()}">Carrinho (${carrinhoCompras.quantidade})</a>
+    </header>
+    
     <h1>Lista de Produtos</h1>
     <a href="${s:mvcUrl('PC#form').build()}">Adicionar novo</a>
     <p>${message}</p>

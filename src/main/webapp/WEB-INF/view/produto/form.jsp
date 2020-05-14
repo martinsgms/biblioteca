@@ -15,6 +15,11 @@
 </head>
 <body>
     
+    <header>
+        <a href="${s:mvcUrl('PC#listAll').build()}">Produtos</a> |
+        <a href="${s:mvcUrl('CCC#itens').build()}">Carrinho (${carrinhoCompras.quantidade})</a>
+    </header>
+    
     <h1>Produto</h1>
 
     <form:form commandName="produto" method="POST" action="${s:mvcUrl('PC#gravar').build()}" enctype="multipart/form-data">

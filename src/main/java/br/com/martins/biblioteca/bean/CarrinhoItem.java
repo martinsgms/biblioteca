@@ -1,15 +1,26 @@
 package br.com.martins.biblioteca.bean;
 
-public class CarrinhoItem {
+import java.io.Serializable;
+import java.math.BigDecimal;
 
+public class CarrinhoItem implements Serializable {
+
+    private static final long serialVersionUID = 2448053904930213072L;
+    
     private Produto produto;
     private TipoPreco tipoPreco;
-
+    
+    public CarrinhoItem() {}
+    
     public CarrinhoItem(Produto produto, TipoPreco tipoPreco) {
         this.produto = produto;
         this.tipoPreco = tipoPreco;
     }
-
+    
+    public BigDecimal getPreco() {
+        return produto.precoPara(tipoPreco);
+    }
+    
     public Produto getProduto() {
         return produto;
     }
@@ -52,5 +63,9 @@ public class CarrinhoItem {
         if (tipoPreco != other.tipoPreco)
             return false;
         return true;
+    }
+
+    public BigDecimal getTotal(Integer qtde) {
+        return this.getPreco().multiply(new BigDecimal(qtde));
     }
 }

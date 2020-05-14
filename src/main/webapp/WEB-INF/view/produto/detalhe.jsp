@@ -10,6 +10,12 @@
     <title>${produto.titulo}</title>
 </head>
 <body>
+
+    <header>
+        <a href="${s:mvcUrl('PC#listAll').build()}">Produtos</a> |
+        <a href="${s:mvcUrl('CCC#itens').build()}">Carrinho (${carrinhoCompras.quantidade})</a>
+    </header>
+    
 	<article id="${produto.id}">
 		<header id="product-highlight" class="clearfix">
 			<div id="product-overview" class="container">
@@ -36,7 +42,7 @@
 				</c:forEach>
 				</ul>
 				<button type="submit">Compre Agora ${produto.titulo}</button>
-                <p>Seu carrinho (${carrinhoCompras.quantidade})</p>
+                <a href="${s:mvcUrl('CCC#itens').build()}">Seu carrinho (${carrinhoCompras.quantidade})</a>
 			</form>
 		</section>
 
