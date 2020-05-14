@@ -1,5 +1,7 @@
 package br.com.martins.biblioteca.controller;
 
+import java.util.concurrent.Callable;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,20 +25,23 @@ public class PagamentoController {
     private RestTemplate rest;
 
     @RequestMapping(value = "/finalizar", method = RequestMethod.POST)
-    public ModelAndView finalizar(RedirectAttributes redirectAttr) {
-
+    public Callable<ModelAndView> finalizar(RedirectAttributes redirectAttr) {
         
-        try {
-            RequestPagamento requestData = new RequestPagamento(carrinho.getTotal());
-            String response = rest.postForObject("http://book-payment.herokuapp.com/payment", requestData, String.class);
-
-            redirectAttr.addFlashAttribute("message", response);
+        return () -> {
+            try {
+                RequestPagamento requestData = new RequestPagamento(carrinho.getTotal());
+                String response = rest.postForObject("http://book-payment.herokuapp.com/payment", requestData, String.class);
+                
+                redirectAttr.addFlashAttribute("message", response);
+                
+            } catch (RestClientException e) {
+                redirectAttr.addFlashAttribute("message", "Erro ao realizar o pagamento");
+                System.err.println("Causa: A transação excede o máximo permitido (>500)");
+                
+                e.printStackTrace();
+            }
             
-        } catch (RestClientException e) {
-            redirectAttr.addFlashAttribute("message", "Erro ao realizar o pagamento");
-            e.printStackTrace();
-        }
-
-        return new ModelAndView("redirect:/produto");
+            return new ModelAndView("redirect:/produto");
+        };
     }
 }
