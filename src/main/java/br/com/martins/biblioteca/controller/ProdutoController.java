@@ -28,9 +28,6 @@ public class ProdutoController {
     @Autowired
     private ProdutoRepository repository;
     
-    @Autowired
-    private FileSaver fileSaver;
-
     @InitBinder
     public void init(WebDataBinder binder) {
         binder.addValidators(new ProdutoValidator());
@@ -45,7 +42,7 @@ public class ProdutoController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult bindingResult,
+    public ModelAndView gravar(@Valid Produto produto, BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
         
         if (bindingResult.hasErrors()) {
@@ -53,9 +50,6 @@ public class ProdutoController {
             System.out.println(fieldError);
             return form(produto);
         }
-        
-        String path = fileSaver.write("arquivos-sumario", sumario);
-        produto.setSumarioPath(path);
         
         repository.gravar(produto);
         redirectAttributes.addFlashAttribute("message", "Produto cadastrado com sucesso!");

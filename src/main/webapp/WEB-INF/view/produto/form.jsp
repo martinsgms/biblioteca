@@ -44,10 +44,6 @@
             <form:errors path="dataLancamento"/>
         </div>
         <div>
-            <label for="sumarioPath">Sumário:</label>
-            <input type="file" name="sumario" id="sumario"/>
-        </div>
-        <div>
             <form:label path="descricao">Descrição:</form:label>
             <form:textarea path="descricao" rows="10" cols="20"/>
         </div>

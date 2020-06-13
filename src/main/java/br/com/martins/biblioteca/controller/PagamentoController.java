@@ -1,18 +1,15 @@
 package br.com.martins.biblioteca.controller;
 
-import java.util.concurrent.Callable;
+import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.martins.biblioteca.bean.CarrinhoCompras;
-import br.com.martins.biblioteca.bean.RequestPagamento;
 
 @Controller
 @RequestMapping("/pagamento")
@@ -20,28 +17,21 @@ public class PagamentoController {
 
     @Autowired
     private CarrinhoCompras carrinho;
-    
-    @Autowired
-    private RestTemplate rest;
 
     @RequestMapping(value = "/finalizar", method = RequestMethod.POST)
-    public Callable<ModelAndView> finalizar(RedirectAttributes redirectAttr) {
+    public ModelAndView finalizar(RedirectAttributes redirectAttr) {
+
+        String response = pagamentoServiceFake(carrinho.getTotal());
+
+        redirectAttr.addFlashAttribute("message", response);
         
-        return () -> {
-            try {
-                RequestPagamento requestData = new RequestPagamento(carrinho.getTotal());
-                String response = rest.postForObject("http://book-payment.herokuapp.com/payment", requestData, String.class);
-                
-                redirectAttr.addFlashAttribute("message", response);
-                
-            } catch (RestClientException e) {
-                redirectAttr.addFlashAttribute("message", "Erro ao realizar o pagamento");
-                System.err.println("Causa: A transação excede o máximo permitido (>500)");
-                
-                e.printStackTrace();
-            }
-            
-            return new ModelAndView("redirect:/produto");
-        };
+        carrinho.esvaziar();
+
+        return new ModelAndView("redirect:/produto");
+    }
+
+    private String pagamentoServiceFake(BigDecimal total) {
+        return total.compareTo(new BigDecimal(500.00)) < 0 ?
+                "Compra realizada com sucesso" : "Erro ao finalizar compra";
     }
 }

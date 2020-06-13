@@ -56,6 +56,10 @@ public class CarrinhoCompras implements Serializable {
         return total;
     }
     
+    public void esvaziar() {
+        this.items = new LinkedHashMap<>();
+    }
+    
     public Collection<CarrinhoItem> getItems() {
         return items.keySet();
     }
