@@ -2,20 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="t"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <title>${produto.titulo}</title>
-</head>
-<body>
-
-    <header>
-        <a href="${s:mvcUrl('PC#listAll').build()}">Produtos</a> |
-        <a href="${s:mvcUrl('CCC#itens').build()}">Carrinho (${carrinhoCompras.quantidade})</a>
-    </header>
-    
+<t:template>
 	<article id="${produto.id}">
 		<header id="product-highlight" class="clearfix">
 			<div id="product-overview" class="container">
@@ -31,29 +20,43 @@
 				<input type="hidden" value="${produto.id}" name="produtoId" >
 
                 <p>Formatos disponíveis</p>
-				<ul id="variants" class="clearfix">
-                <c:forEach items="${produto.precos}" var="preco">
-						<li class="buy-option">
-							<input type="radio" name="tipoPreco" class="variant-radio" id="tipoPreco" value="${preco.tipo}" checked="checked" /> 
-							<label class="variant-label">${preco.tipo}</label> 
-							<small style="text-decoration:line-through">R$ ${preco.valor + 10}</small>
-							<p class="variant-price">R$ ${preco.valor}</p>
-						</li>
-				</c:forEach>
-				</ul>
-				<button type="submit">Compre Agora ${produto.titulo}</button>
-                <a href="${s:mvcUrl('CCC#itens').build()}">Seu carrinho (${carrinhoCompras.quantidade})</a>
+				
+                <div class="container">
+                    <div class="row row-cols-3">
+                        <c:forEach items="${produto.precos}" var="preco">
+                
+                        <div class="col">
+                            <div class="card" style="width: 18rem;">
+                              <div class="card-body">
+                                <h5 class="card-title">${preco.tipo}</h5>
+                                <p class="card-text">
+                                De 
+                                    <small style="text-decoration:line-through">
+                                        R$ <fmt:formatNumber maxFractionDigits="2" value="${preco.valor * 1.5}"/>
+                                    </small>
+                                por apenas 
+                                    R$ ${preco.valor}
+                                </p>
+                                
+        						<input type="radio" name="tipoPreco" id="tipoPreco" value="${preco.tipo}" checked="checked" /> 
+                                <label>Quero este!</label>
+                              </div>
+                            </div>
+                        </div>
+                
+        				</c:forEach>
+                    </div>
+                </div>
+                
+            <div class="container" style="margin-top: 2%">
+    			<button type="submit" class="btn btn-primary">Compre Agora ${produto.titulo}</button>
+            </div>
+            
 			</form>
 		</section>
 
-		<div class="container">
-			<section class="summary">
-				<ul>
-					<li>
-						Veja o sumário
-					</li>
-				</ul>
-			</section>
+
+		<div class="container" style="margin-top: 2%">
 
 			<section class="data product-detail">
 				<h2 class="section-title">Dados do livro:</h2>
@@ -65,5 +68,4 @@
 			</section>
 		</div>
 	</article>
-</body>
-</html>
+</t:template>

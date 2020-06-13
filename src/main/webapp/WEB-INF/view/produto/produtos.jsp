@@ -1,38 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="t"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <title>Biblioteca :: Produtos</title>
-</head>
-
-<style>
-    *{font-family: verdana}
-    table{width:100%}
-    table, tr, td{border: 0.3px solid; padding: 5px;}
-    thead{font-weight: bold}
-</style>
-<body>
-    
-    <header>
-        <a href="${s:mvcUrl('PC#listAll').build()}">Produtos</a> |
-        <a href="${s:mvcUrl('CCC#itens').build()}">Carrinho (${carrinhoCompras.quantidade})</a>
-    </header>
-    
+<t:template>
     <h1>Lista de Produtos</h1>
     <a href="${s:mvcUrl('PC#form').build()}">Adicionar novo</a>
     <p>${message}</p>
     
-    <table>
+    <table class="table">
     <thead>
         <tr>
-            <td>Titulo</td>
-            <td>Autor</td>
-            <td>Páginas</td>
-            <td>Descrição</td>
+            <th scope="col">Titulo</th>
+            <th scope="col">Autor</th>
+            <th scope="col">Páginas</th>
+            <th scope="col">Descrição</th>
         </tr>
     </thead>
     <tbody>
@@ -52,6 +34,4 @@
         </tr>
     </tbody>
     </table>
-
-</body>
-</html>
+</t:template>

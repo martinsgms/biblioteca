@@ -2,24 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="t"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset='utf-8'>
-    <title>Biblioteca :: Cadastro Produto</title>
-<style>
-    *{font-family: verdana}
-    div{margin: 10px}
-</style>
-</head>
-<body>
-    
-    <header>
-        <a href="${s:mvcUrl('PC#listAll').build()}">Produtos</a> |
-        <a href="${s:mvcUrl('CCC#itens').build()}">Carrinho (${carrinhoCompras.quantidade})</a>
-    </header>
-    
+<t:template>
     <h1>Produto</h1>
 
     <form:form commandName="produto" method="POST" action="${s:mvcUrl('PC#gravar').build()}" enctype="multipart/form-data">
@@ -60,5 +45,4 @@
             <button type="submit">Gravar</button>
         </div>
     </form:form>    
-</body>
-</html>
+</t:template>

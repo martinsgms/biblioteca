@@ -1,31 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="t"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-
-<meta charset="utf-8" />
-
-    <title>Carrinho</title>
-
-<style>
-    *{font-family: verdana}
-    table{width:100%}
-    table, tr, td, th{border: 0.3px solid; padding: 5px;}
-    thead{font-weight: bold}
-</style>
-</head>
-<body>
-    
-    <header>
-        <a href="${s:mvcUrl('PC#listAll').build()}">Produtos</a> |
-        <a href="${s:mvcUrl('CCC#itens').build()}">Carrinho (${carrinhoCompras.quantidade})</a>
-    </header>
-    
+<t:template>
 	<section class="container middle">
-		<h2 id="cart-title">Seu carrinho de compras</h2>
+		<h1 id="cart-title">Seu carrinho de compras</h1>
         
         <p>${message}</p>
         
@@ -33,10 +12,10 @@
 			<thead>
 				<tr>
 					<th width="65%">Item</th>
-					<th width="10%">PreÃ§o</th>
+					<th width="10%">Preço</th>
 					<th width="10%">Quantidade</th>
 					<th width="10%">Total</th>
-					<th width="5%">AÃ§Ãµes</th>
+					<th width="5%">Ações</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,6 +48,4 @@
 			</tfoot>
 		</table>
 	</section>
-    
-</body>
-</html>
+</t:template>
