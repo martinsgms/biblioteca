@@ -3,6 +3,8 @@ package br.com.martins.biblioteca.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -34,6 +36,7 @@ public class ProdutoController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
+    @Cacheable(value="listAll")
     public ModelAndView listAll() {
         ModelAndView modelAndView = new ModelAndView("produto/produtos");
         modelAndView.addObject("produtos", repository.findAll());
@@ -42,6 +45,7 @@ public class ProdutoController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @CacheEvict(value="listAll", allEntries=true)
     public ModelAndView gravar(@Valid Produto produto, BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
         

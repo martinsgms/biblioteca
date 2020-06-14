@@ -6,7 +6,17 @@
 <t:template>
     <h1>Lista de Produtos</h1>
     <a href="${s:mvcUrl('PC#form').build()}">Adicionar novo</a>
-    <p>${message}</p>
+    
+    
+    <c:if test="${message != null}">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            ${message}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    </c:if>
+  
     
     <table class="table">
     <thead>
