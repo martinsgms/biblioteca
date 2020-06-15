@@ -19,8 +19,9 @@ public class ProdutoValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "autor", "field.invalid");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "paginas", "field.invalid");
         
-        for (int i = 0; i < 3; i++) 
+        for (int i = 0; i < 3; i++) {
             ValidationUtils.rejectIfEmptyOrWhitespace(errors, "precos[" + i + "].valor", "field.invalid");
+        }
         
         Produto p = (Produto) target;
         if(p.getPaginas() != null && p.getPaginas() <= 0)
